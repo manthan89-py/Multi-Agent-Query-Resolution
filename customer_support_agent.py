@@ -1,3 +1,5 @@
+# custtomer_support_agent.py
+
 import os
 import asyncio
 from agno.agent import Agent
@@ -6,7 +8,7 @@ from dotenv import load_dotenv
 from typing import Dict, Any
 from datetime import datetime
 from instructions import customer_support_agent_instructions
-from response_model import ResponseOutput
+from models import AgentResponseOutput
 
 load_dotenv()
 
@@ -154,6 +156,7 @@ customer_support_agent = Agent(
     show_tool_calls=True,
     tools=[create_support_ticket, lookup_customer_info, check_ticket_status],
     instructions=customer_support_agent_instructions,
+    response_model=AgentResponseOutput,
 )
 
 

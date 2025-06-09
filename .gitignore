@@ -14,3 +14,6 @@ wheels/
 
 # Qdrant data
 path/
+
+# tmp folder for storage
+tmp/

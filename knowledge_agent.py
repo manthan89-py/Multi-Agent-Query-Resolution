@@ -2,27 +2,27 @@ import asyncio
 import os
 from agno.agent import Agent
 from agno.knowledge.website import WebsiteKnowledgeBase
-from agno.vectordb.qdrant import Qdrant
 from agno.tools.tavily import TavilyTools
 from agno.embedder.mistral import MistralEmbedder
 from agno.models.mistral import MistralChat
 from dotenv import load_dotenv
 from instructions import knowledge_agent_instructions
-from response_model import ResponseOutput
+from models import AgentResponseOutput
+from agno.vectordb.search import SearchType
+from agno.vectordb.chroma import ChromaDb
+
 
 load_dotenv()
 
 
-COLLECTION_NAME = "website-content"
+COLLECTION_NAME = "infinitepay-extracted-content"
 API_KEY = os.getenv("MISTRAL_API_KEY")
 
-vector_db = Qdrant(
-    embedder=MistralEmbedder(
-        api_key=API_KEY,
-        dimensions=1536,
-    ),
+
+vector_db = ChromaDb(
     collection=COLLECTION_NAME,
-    url="http://localhost:6333",
+    embedder=MistralEmbedder(api_key=API_KEY),
+    persistent_client=True,
 )
 
 urls = [
@@ -48,9 +48,9 @@ urls = [
 # Create a knowledge base with the seed URLs
 knowledge_base = WebsiteKnowledgeBase(
     urls=urls,
-    # Number of links to follow from the seed URLs
-    max_links=5,
-    # Table name: ai.website_documents
+    num_documents=2,
+    max_links=2,
+    max_depth=2,
     vector_db=vector_db,
 )
 
@@ -63,6 +63,7 @@ knowledge_agent = Agent(
     instructions=knowledge_agent_instructions,
     debug_mode=True,
     tools=[TavilyTools(search="")],
+    response_model=AgentResponseOutput,
 )
 
 
