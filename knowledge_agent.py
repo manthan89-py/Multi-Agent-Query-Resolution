@@ -1,35 +1,46 @@
-import asyncio
+# knowledge_agent.py
+
+"""Knowledge base agent for handling product information and general inquiries.
+This module creates an intelligent agent that can search through InfinitePay's
+website content and external sources to answer product-related questions.
+"""
+
 import os
+import logging
+from typing import List, Optional
+
 from agno.agent import Agent
 from agno.knowledge.website import WebsiteKnowledgeBase
 from agno.tools.tavily import TavilyTools
 from agno.embedder.mistral import MistralEmbedder
 from agno.models.mistral import MistralChat
+from agno.vectordb.chroma import ChromaDb
 from dotenv import load_dotenv
+
 from instructions import knowledge_agent_instructions
 from models import AgentResponseOutput
-from agno.vectordb.search import SearchType
-from agno.vectordb.chroma import ChromaDb
 
+# Configure logging
+logger = logging.getLogger(__name__)
 
+# Load environment variables
 load_dotenv()
 
-
+# Configuration
 COLLECTION_NAME = "infinitepay-extracted-content"
 API_KEY = os.getenv("MISTRAL_API_KEY")
+LLM_MODEL = os.getenv("LLM_MODEL", "mistral-large-latest")
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
+if not API_KEY:
+    raise ValueError("MISTRAL_API_KEY environment variable is required")
 
-vector_db = ChromaDb(
-    collection=COLLECTION_NAME,
-    embedder=MistralEmbedder(api_key=API_KEY),
-    persistent_client=True,
-)
-
-urls = [
+# InfinitePay website URLs for knowledge extraction
+INFINITEPAY_URLS: List[str] = [
     "https://www.infinitepay.io",
-    "https://www.infinitepay.io/maquininha",
-    "https://www.infinitepay.io/maquininha-celular",
-    "https://www.infinitepay.io/tap-to-pay",
+    # "https://www.infinitepay.io/maquininha",
+    # "https://www.infinitepay.io/maquininha-celular",
+    # "https://www.infinitepay.io/tap-to-pay",
     "https://www.infinitepay.io/pdv",
     "https://www.infinitepay.io/receba-na-hora",
     "https://www.infinitepay.io/gestao-de-cobranca-2",
@@ -45,31 +56,103 @@ urls = [
     "https://www.infinitepay.io/cartao",
     "https://www.infinitepay.io/rendimento",
 ]
-# Create a knowledge base with the seed URLs
-knowledge_base = WebsiteKnowledgeBase(
-    urls=urls,
-    num_documents=2,
-    max_links=2,
-    max_depth=2,
-    vector_db=vector_db,
-)
-
-# Create an agent with the knowledge base
-knowledge_agent = Agent(
-    name="KnowledgeBase Agent",
-    model=MistralChat(api_key=API_KEY, id=os.getenv("LLM_MODEL")),
-    knowledge=knowledge_base,
-    search_knowledge=True,
-    instructions=knowledge_agent_instructions,
-    debug_mode=True,
-    tools=[TavilyTools(search="")],
-    response_model=AgentResponseOutput,
-)
 
 
-# if __name__ == "__main__":
-#     # Comment out after first run
-#     asyncio.run(knowledge_base.aload(recreate=False))
+def create_vector_db() -> ChromaDb:
+    """
+    Create and configure the ChromaDB vector database for knowledge storage.
 
-#     # Create and use the agent
-#     asyncio.run(knowledge_agent.aprint_response("What is infinitepay?", markdown=True))
+    Returns:
+        ChromaDb: Configured vector database instance
+
+    Raises:
+        Exception: If vector database creation fails
+    """
+    try:
+        vector_db = ChromaDb(
+            collection=COLLECTION_NAME,
+            embedder=MistralEmbedder(api_key=API_KEY),
+            persistent_client=True,
+        )
+        logger.info(f"Vector database initialized with collection: {COLLECTION_NAME}")
+        return vector_db
+    except Exception as e:
+        logger.error(f"Failed to create vector database: {str(e)}")
+        raise
+
+
+def create_knowledge_base(vector_db: ChromaDb) -> WebsiteKnowledgeBase:
+    """
+    Create the website knowledge base with InfinitePay content.
+
+    Args:
+        vector_db: The vector database instance to use for storage
+
+    Returns:
+        WebsiteKnowledgeBase: Configured knowledge base instance
+
+    Raises:
+        Exception: If knowledge base creation fails
+    """
+    try:
+        knowledge_base = WebsiteKnowledgeBase(
+            urls=INFINITEPAY_URLS,
+            num_documents=4,
+            max_links=1,
+            max_depth=1,
+            vector_db=vector_db,
+        )
+        logger.info(f"Knowledge base created with {len(INFINITEPAY_URLS)} URLs")
+        return knowledge_base
+    except Exception as e:
+        logger.error(f"Failed to create knowledge base: {str(e)}")
+        raise
+
+
+def create_knowledge_agent(knowledge_base: WebsiteKnowledgeBase) -> Agent:
+    """
+    Create and configure the knowledge agent.
+
+    Args:
+        knowledge_base: The knowledge base instance to use
+
+    Returns:
+        Agent: Configured knowledge agent instance
+
+    Raises:
+        Exception: If agent creation fails
+    """
+    try:
+        # Initialize tools
+        tools = []
+        if TAVILY_API_KEY:
+            tools.append(TavilyTools(search=""))
+            logger.info("Tavily search tool enabled")
+        else:
+            logger.warning("TAVILY_API_KEY not found, web search disabled")
+
+        agent = Agent(
+            name="KnowledgeBase Agent",
+            model=MistralChat(api_key=API_KEY, id=LLM_MODEL),
+            knowledge=knowledge_base,
+            search_knowledge=True,
+            instructions=knowledge_agent_instructions,
+            debug_mode=True,
+            tools=tools,
+            response_model=AgentResponseOutput,
+        )
+        logger.info("Knowledge agent initialized successfully")
+        return agent
+    except Exception as e:
+        logger.error(f"Failed to create knowledge agent: {str(e)}")
+        raise
+
+
+# Initialize components
+try:
+    vector_db = create_vector_db()
+    knowledge_base = create_knowledge_base(vector_db)
+    knowledge_agent = create_knowledge_agent(knowledge_base)
+except Exception as e:
+    logger.error(f"Failed to initialize knowledge agent components: {str(e)}")
+    raise
