@@ -72,8 +72,8 @@ The system returns structured responses using Pydantic models:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd multi-agent-customer-resolution
+   git clone https://github.com/manthan89-py/Multi-Agent-Query-Resolution.git
+   cd <directory>
    ```
 
 2. **Environment Setup**
