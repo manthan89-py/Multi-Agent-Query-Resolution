@@ -1,4 +1,4 @@
-# customer_support_agent.py
+# agents/customer_support_agent.py
 """
 Customer support agent implementation for handling support tickets and customer inquiries.
 
@@ -15,11 +15,10 @@ from agno.agent import Agent
 from agno.models.mistral import MistralChat
 from dotenv import load_dotenv
 
-from instructions import customer_support_agent_instructions
-from models import AgentResponseOutput
+from utils import customer_support_agent_instructions, AgentResponseOutput, get_logger
 
 # Configure logging
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()

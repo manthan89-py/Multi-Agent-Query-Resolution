@@ -1,4 +1,4 @@
-# models.py
+# utils/models.py
 """
 Pydantic models for the multi-agent workflow system.
 

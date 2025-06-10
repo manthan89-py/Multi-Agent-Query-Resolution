@@ -1,4 +1,5 @@
 # api.py
+
 """
 FastAPI application for the multi-agent customer support and knowledge system.
 
@@ -6,7 +7,7 @@ This module provides a REST API endpoint for processing customer queries through
 an intelligent workflow that routes queries to appropriate agents and returns
 personalized responses.
 """
-
+import os
 import logging
 from contextlib import asynccontextmanager
 from typing import Dict, Any
@@ -15,37 +16,20 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field
 
-from workflow import IntelligentQueryResolver as Workflow
-from knowledge_agent import knowledge_base
-from models import FinalResponseOutput
+from agents import Workflow, knowledge_base
+from utils import FinalResponseOutput, QueryRequest, ErrorResponse
 from agno.storage.json import JsonStorage
+
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
-
-
-class QueryRequest(BaseModel):
-    """Request model for chat queries."""
-
-    message: str = Field(
-        ..., min_length=1, max_length=1000, description="User query message"
-    )
-    user_id: str = Field(
-        ..., min_length=1, max_length=100, description="Unique user identifier"
-    )
-
-
-class ErrorResponse(BaseModel):
-    """Error response model."""
-
-    error: str = Field(..., description="Error message")
-    detail: str = Field(None, description="Additional error details")
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -57,7 +41,7 @@ async def lifespan(app: FastAPI):
 
 # Create FastAPI app with lifespan management
 app = FastAPI(
-    title="Multi-Agent Customer Support API",
+    title="Multi-Agent Customer Query Resolution API",
     description="Intelligent query resolution system using multiple AI agents",
     version="1.0.0",
     lifespan=lifespan,
@@ -90,7 +74,7 @@ def get_workflow() -> Workflow:
         HTTPException: If workflow initialization fails
     """
     try:
-        return Workflow(storage=JsonStorage("tmp/workflow_data.json"))
+        return Workflow(storage=JsonStorage("storage/workflow_data.json"))
     except Exception as e:
         logger.error(f"Failed to initialize workflow: {str(e)}")
         raise HTTPException(
@@ -116,6 +100,42 @@ async def health_check() -> Dict[str, str]:
     """Health check endpoint."""
     return {"status": "healthy", "service": "multi-agent-api"}
 
+@app.get(
+    "/load_database",
+    responses={
+        400: {"model": ErrorResponse, "description": "Bad Request"},
+        500: {"model": ErrorResponse, "description": "Internal Server Error"},
+    },
+)
+async def load_database() -> Dict[str, Any]:
+    """
+    Database loading endpoint.
+
+    Returns:
+        Success message if successful, error message otherwise.
+
+    Raises:
+        HTTPException: For various error conditions (400, 500)
+    """
+    try:
+        logger.info("Processing database loading activity.")
+
+        if os.path.exists("storage/chroma_db"):
+            logger.info("Database already exists. Skipping creation.")
+            return {"status": "success", "message": "Database already exists"}
+        else:
+            # load the knowledge base
+            _ = await knowledge_base.aload(recreate=True)
+            logger.info(f"Successfully processed database loading activity.") 
+            return {"status": "success", "message": "Database loaded successfully"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error processing database: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=500, detail=f"Failed to process query: {str(e)}"
+        )
 
 @app.post(
     "/chat",

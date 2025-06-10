@@ -1,4 +1,4 @@
-# workflow.py
+# agents/workflow.py
 """
 Main workflow orchestrator for the intelligent query resolution system.
 
@@ -17,9 +17,8 @@ from agno.models.mistral import MistralChat
 from agno.storage.json import JsonStorage
 from dotenv import load_dotenv
 
-from router_agent import customer_support_product_inquiry_team as router_agent_team
-from instructions import personality_agent_instructions
-from models import PersonalityLayerResponse, FinalResponseOutput
+from agents import router_agent_team
+from utils import personality_agent_instructions, PersonalityLayerResponse, FinalResponseOutput
 
 # Configure logging
 logger = logging.getLogger(__name__)

@@ -1,4 +1,4 @@
-# router_agent.py
+# agents/router_agent.py
 """
 Router agent team configuration for routing queries to appropriate specialists.
 
@@ -7,20 +7,16 @@ product inquiry requests by routing them to the most suitable agent.
 """
 
 import os
-import logging
-from typing import List
 
 from agno.team.team import Team
 from agno.models.mistral import MistralChat
 from dotenv import load_dotenv
 
-from customer_support_agent import customer_support_agent
-from knowledge_agent import knowledge_agent
-from instructions import router_agent_instructions
-from models import AgentResponseOutput
+from agents import customer_support_agent, knowledge_agent
+from utils import router_agent_instructions, AgentResponseOutput, get_logger
 
 # Configure logging
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()

@@ -1,4 +1,4 @@
-# knowledge_agent.py
+# agents/knowledge_agent.py
 
 """Knowledge base agent for handling product information and general inquiries.
 This module creates an intelligent agent that can search through InfinitePay's
@@ -6,8 +6,7 @@ website content and external sources to answer product-related questions.
 """
 
 import os
-import logging
-from typing import List, Optional
+from typing import List
 
 from agno.agent import Agent
 from agno.knowledge.website import WebsiteKnowledgeBase
@@ -17,11 +16,10 @@ from agno.models.mistral import MistralChat
 from agno.vectordb.chroma import ChromaDb
 from dotenv import load_dotenv
 
-from instructions import knowledge_agent_instructions
-from models import AgentResponseOutput
+from utils import knowledge_agent_instructions, AgentResponseOutput, get_logger
 
 # Configure logging
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -73,6 +71,7 @@ def create_vector_db() -> ChromaDb:
             collection=COLLECTION_NAME,
             embedder=MistralEmbedder(api_key=API_KEY),
             persistent_client=True,
+            path="storage/chroma_db",
         )
         logger.info(f"Vector database initialized with collection: {COLLECTION_NAME}")
         return vector_db

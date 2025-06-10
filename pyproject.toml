@@ -1,7 +1,7 @@
 [project]
 name = "cloudwalk"
 version = "0.1.0"
-description = "Add your description here"
+description = "Multi Agent Workflow Chatbot for CloudWalk"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -10,6 +10,9 @@ dependencies = [
     "chromadb>=1.0.12",
     "fastapi>=0.115.9",
     "mistralai>=1.8.1",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.1.1",
+    "pytest-mock>=3.14.1",
     "python-dotenv>=1.1.0",
     "tantivy>=0.24.0",
     "tavily-python>=0.7.4",

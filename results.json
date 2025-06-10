@@ -1,0 +1,152 @@
+[
+    {
+        "query": "Why I should chose Infinitepay?",
+        "response": "You're going to love InfinitePay! Here's why it's such a great choice for your business: They offer really competitive and clear pricing, with rates starting as low as 0.75% for debit and 2.69% for credit transactions. Plus, Pix transactions are free - how awesome is that?\n\nThey've got a bunch of different payment solutions to fit your needs. You can get the Maquininha Smart, which is a super handy card machine, or use InfiniteTap to turn your smartphone into a card machine. You can even create payment links to share on WhatsApp or email, and set up your own online store!\n\nInfinitePay uses some really advanced tech like blockchain and AI to keep their costs low and pass those savings on to you. And you'll love their flexible receiving options - get your money right away or within one business day.\n\nBut wait, there's more! They also offer tools for managing recurring payments, a virtual card with cashback, and even business loans. And with their RA1000 rating, you know they're serious about customer satisfaction.\n\nOh, and did I mention there are no monthly fees? Plus, they're authorized by the Central Bank, so you know you can trust them. InfinitePay is really the whole package - great prices, awesome tech, and fantastic support. It's a win-win for your business!",
+        "source_agent_response": "You should choose InfinitePay for several compelling reasons:  \n\n1. Competitive and Transparent Pricing: InfinitePay offers some of the most competitive rates in the market. They provide consistently low rates without temporary promotional fees. Their pricing structure is transparent, with rates starting as low as 0.75% for debit transactions and from 2.69% for credit transactions. Additionally, Pix transactions are free, which can significantly reduce costs for businesses with high transaction volumes. \n\n2. Versatile Payment Solutions: InfinitePay provides a range of payment solutions to suit different business needs. These include: \n   - Maquininha Smart: A comprehensive card machine that accepts various payment methods including Pix, debit, and credit. \n   - InfiniteTap: Turns your NFC-enabled smartphone into a card machine, allowing you to accept payments anywhere. \n   - Payment Links: Create and share payment links via WhatsApp, email, or other platforms. \n   - Online Store: Set up your own virtual store and accept payments directly through various methods integrated into the InfinitePay platform. \n\n3. Advanced Technology: InfinitePay leverages advanced technologies such as blockchain and artificial intelligence to reduce operational costs. This technological edge allows them to offer lower rates and more efficient services. \n\n4. Flexible and Immediate Receiving Options: InfinitePay offers flexible receiving options, allowing you to choose between immediate receipt of funds or within one business day. This flexibility can be crucial for managing cash flow effectively. \n\n5. Comprehensive Business Tools: Beyond payment processing, InfinitePay offers tools for managing recurring payments, a virtual card with cashback, and business loans. These additional services can help streamline your business operations and provide financial support when needed. \n\n6. High Customer Satisfaction: InfinitePay has a strong reputation for customer satisfaction, as evidenced by their RA1000 rating. This indicates a high level of service quality and customer support, ensuring that any issues are promptly and effectively resolved. \n\n7. No Monthly Fees: InfinitePay does not charge monthly fees, which can help reduce fixed costs for businesses. This makes it a cost-effective solution for businesses of all sizes. \n\n8. Trust and Reliability: InfinitePay is authorized by the Central Bank to operate as a payment institution, which reinforces its credibility and reliability. They have a good track record on consumer complaint platforms, indicating a trustworthy service. \n\nBy choosing InfinitePay, you benefit from a combination of low costs, advanced technology, versatile payment solutions, and strong customer support, making it a robust choice for managing your business payments efficiently.",
+        "agent_workflow": {
+            "agent_name": "InfinitePayKnowledgeAgent",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "query": "InfinitePay features and benefits"
+                }
+            }
+        }
+    },
+    {
+        "query": "What are the fees of the Maquininha Smart?",
+        "response": "Let me break down the Maquininha Smart fees for you in a simple way! The more you sell, the less you pay in fees. Isn't that great? Here's how it works:\n\nIf you're just starting out and selling up to R$20,000 a month:\n- Pix is completely free!\n- Debit card transactions cost 1.37%\n- Credit card payments in one installment are 3.15%\n- For credit payments in 12 installments, it's 12.40%\n\nOnce your business grows and you're selling between R$20,000 and R$40,000 monthly:\n- Pix remains free\n- Debit fees drop to 0.85%\n- Credit (1x) goes down to 2.89%\n- Credit (12x) decreases to 10.12%\n\nWhen you're doing really well, with sales between R$40,000 and R$80,000:\n- Pix is still free\n- Debit fees are just 0.79%\n- Credit (1x) is 2.79%\n- Credit (12x) is 9.56%\n\nAnd for our high-volume sellers, over R$80,000 monthly:\n- Pix stays free\n- Debit fees are only 0.75%\n- Credit (1x) is 2.69%\n- Credit (12x) is 8.99%\n\nIt's nice to see your fees go down as your business grows, right? This way, you keep more of your hard-earned money as your sales increase!",
+        "source_agent_response": "The Maquininha Smart offers competitive fees that decrease as your sales volume increases. Here are the fee structures based on different monthly sales volumes:\n\nFor businesses with sales up to R$20,000 per month:\n- Pix: Free\n- Debit: 1.37%\n- Credit (1x): 3.15%\n- Credit (12x): 12.40%\n\nFor businesses with sales between R$20,000 and R$40,000 per month:\n- Pix: Free\n- Debit: 0.85%\n- Credit (1x): 2.89%\n- Credit (12x): 10.12%\n\nFor businesses with sales between R$40,000 and R$80,000 per month:\n- Pix: Free\n- Debit: 0.79%\n- Credit (1x): 2.79%\n- Credit (12x): 9.56%\n\nFor businesses with sales above R$80,000 per month:\n- Pix: Free\n- Debit: 0.75%\n- Credit (1x): 2.69%\n- Credit (12x): 8.99%",
+        "agent_workflow": {
+            "agent_name": "InfinitePay Assistant",
+            "tool_calls": {
+                "knowledge_search": {
+                    "name": "search_knowledge_base",
+                    "parameters": {
+                        "query": "Maquininha Smart fees"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "query": "What are the rates for debit and credit card transactions?",
+        "response": "Let me break down InfinitePay's pricing in a friendly way! We've got some great rates for both debit and credit card transactions. For debit cards, rates start at just 0.75%, and if your business is doing really well with sales over 80k per month, you might even qualify for rates as low as 0.75%! Pretty neat, huh? Now, for credit cards, if your customers pay in one go (what we call 'credit à vista'), rates start at 2.69%. And again, if you're a high-volume business, you could get rates as low as 2.69%. If your customers prefer installment payments up to 12 times, the rates start at 8.99%. But here's some exciting news: if your business has monthly sales above R$20,000, you could get special rates that are up to 50% lower than standard rates! Isn't that amazing? Oh, and did I mention that Pix transactions and Boleto payments have 0% fees? Pretty cool, right? Just remember, these rates can vary depending on your monthly sales and the payment method. For the most accurate info, check out InfinitePay's official website or give their sales team a call. They're really helpful!",
+        "source_agent_response": "InfinitePay offers competitive rates for debit and credit card transactions. Here are the details:\n\n1. Debit Card Transactions:\n   - Rates start at 0.75%\n   - For businesses with higher sales volume (above 80k/month), rates can be as low as 0.75%\n\n2. Credit Card Transactions:\n   - Credit à vista (single payment): Rates start at 2.69%\n   - For businesses with higher sales volume (above 80k/month), credit à vista rates can be as low as 2.69%\n   - Installment payments (12x): Rates start at 8.99%\n\n3. Special Conditions:\n   - InfinitePay offers special rates for businesses with monthly sales above R\\(20,000\n   - These rates can be up to 50% lower than standard rates\n\n4. Additional Payment Methods:\n   - Pix transactions: 0% fee\n   - Boleto (payment slip): 0% fee\n\nThe actual rates may vary depending on your business's monthly sales volume and the specific payment method. For the most accurate and up-to-date information, it's recommended to check InfinitePay's official website or contact their sales team directly.",
+        "agent_workflow": {
+            "agent_name": "InfinitePay_Assistant",
+            "tool_calls": {
+                "knowledge_base_search": {
+                    "query": "InfinitePay transaction rates for debit and credit cards"
+                }
+            }
+        }
+    },
+    {
+        "query": "How can I use my phone as a card machine?",
+        "response": "Hey there! Turning your phone into a card machine with InfinitePay is a breeze. Here's how you can do it:\n\n1. First things first, grab the InfinitePay app from the App Store or Google Play Store.\n2. Sign up for an account using your CPF or CNPJ.\n3. Make sure your phone has NFC capability – that's the tech that lets devices talk to each other when they're close.\n4. Open the app and tap on the InfiniteTap option to turn your phone into a card machine. Pretty cool, huh?\n5. Just follow the instructions on your screen to finish setting up.\n6. Once you're all set, your customers can tap their cards or phones on your device to make payments. Easy peasy!\n\nAnd here's the best part: InfiniteTap has some great rates. You'll pay just 1.37% for debit transactions, 3.15% for credit (1x), and 12.40% for credit (12x). Plus, you get your sales instantly, and there's no need for any extra gadgets. Oh, and it works on both Android and iOS phones with NFC. Happy selling!",
+        "source_agent_response": "To use your phone as a card machine with InfinitePay, follow these steps:\n\n1. Download the InfinitePay app from the App Store or Google Play Store.\n2. Register for an account using your CPF/CNPJ.\n3. Ensure your phone has NFC (Near Field Communication) capability.\n4. In the app, select the InfiniteTap option to transform your phone into a card machine.\n5. Follow the on-screen instructions to complete the setup.\n6. Once set up, you can accept payments by having customers tap their cards or phones on your device.\n\nInfiniteTap offers competitive transaction fees starting from 1.37% for debit, 3.15% for credit (1x), and 12.40% for credit (12x). You can receive your sales instantly, and there's no need for additional hardware. This solution is available for both Android and iOS devices with NFC capability.",
+        "agent_workflow": {
+            "agent_name": "InfinitePay-Knowledge-Agent",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "query": "use phone as card machine"
+                }
+            }
+        }
+    },
+    {
+        "query": "Quando foi o último jogo do Palmeiras?",
+        "response": "Infelizmente, não tenho os detalhes mais recentes sobre o último jogo do Palmeiras. Mas, se você quiser saber mais sobre os serviços da InfinitePay, como empréstimos, gestão de cobrança ou soluções de pagamento, estou aqui para ajudar! É só perguntar!",
+        "source_agent_response": "Não encontrei informações sobre o último jogo do Palmeiras. Posso ajudar com informações sobre os serviços da InfinitePay, como empréstimos, gestão de cobrança e soluções de pagamento.",
+        "agent_workflow": {
+            "agent_name": "InfinitePay-assistant",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "parameters": {
+                        "query": "último jogo Palmeiras"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "query": "Quais as principais notícias de São Paulo hoje?",
+        "response": "Desculpe, não consegui encontrar as principais notícias de São Paulo hoje. Como somos uma empresa focada em soluções de pagamento, não temos acesso a informações sobre notícias locais. Que tal dar uma olhada em algum site de notícias ou jornal local para se manter informado? Eles sempre têm as informações mais atualizadas!",
+        "source_agent_response": "Desculpe, não encontrei informações sobre as principais notícias de São Paulo hoje. A InfinitePay é uma empresa de soluções de pagamento e não fornece informações sobre notícias locais. Para obter as últimas notícias de São Paulo, recomendo verificar fontes de notícias locais ou sites de notícias confiáveis.",
+        "agent_workflow": {
+            "agent_name": "InfinitePay Knowledge Agent",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "query": "notícias de São Paulo hoje"
+                }
+            }
+        }
+    },
+    {
+        "query": "Why I am not able to make transfers?",
+        "response": "I'd be happy to help you figure out what's going on with your transfers! There are a few common things that could be causing this. Let me walk you through some possibilities so we can get this sorted together.",
+        "source_agent_response": "There could be several reasons why you might be experiencing issues with making transfers. Here are some common factors to consider:",
+        "agent_workflow": {
+            "agent_name": "Product Knowledge Specialist",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "query": "transfer restrictions or requirements",
+                    "parameters": {
+                        "query": "transfer restrictions or requirements"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "query": "I can't sign in to my account.",
+        "response": "I'm really sorry you're having trouble signing in - I know how frustrating that can be. I've just created a support ticket for you (your reference number is TK-1002), and our technical team will reach out to you within the next 24 hours to get this sorted. While we're waiting for them to contact you, is there anything else I can help with?",
+        "source_agent_response": "I'm sorry to hear you're having trouble signing in. I've created a support ticket (TK-1002) for our technical team to investigate this issue. They'll contact you within 24 hours to resolve the problem. Is there anything else I can assist you with in the meantime?",
+        "agent_workflow": {
+            "agent_name": "Customer Support Specialist",
+            "tool_calls": {
+                "lookup_customer_info": {
+                    "parameters": {
+                        "email": "customer@example.com"
+                    }
+                },
+                "create_support_ticket": {
+                    "parameters": {
+                        "customer_email": "customer@example.com",
+                        "subject": "Login Issue",
+                        "description": "Customer reported being unable to sign in to their account",
+                        "priority": "medium"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "query": "What are the fees of the Maquininha Smart",
+        "response": "Claro, eu ficaria feliz em explicar as taxas da Maquininha Smart!\n\nPara faturamentos mensais até R$80.000, as taxas são as seguintes:\n- Débito: 1,37%\n- Crédito à vista: 3,15%\n- Crédito parcelado em até 12x: 12,40%\n\nAgora, à medida que seu faturamento aumenta, essas taxas diminuem. Veja as taxas para faturamentos acima de R$80.000 por mês:\n- Débito: 0,75%\n- Crédito à vista: 2,69%\n- Crédito parcelado em até 12x: 8,99%\n\nEssas taxas são automaticamente ajustadas conforme seu faturamento cresce, então você sempre recebe a melhor tarifa possível. Se precisar de mais alguma informação ou ajuda, é só avisar!",
+        "source_agent_response": "As taxas da Maquininha Smart são as seguintes: Débito 1,37%, Crédito à vista 3,15%, Crédito parcelado em 12x 12,40%. As taxas diminuem conforme o faturamento aumenta, sendo que para faturamento acima de 80 mil por mês, as taxas são: Débito 0,75%, Crédito à vista 2,69%, Crédito parcelado em 12x 8,99%",
+        "agent_workflow": {
+            "agent_name": "Product Knowledge Specialist",
+            "tool_calls": {
+                "search_knowledge_base": {
+                    "query": "Maquininha Smart fees"
+                }
+            }
+        }
+    },
+    {
+        "query": "What are the fees of the Maquininha Smart",
+        "response": "Sure thing! You can get the Maquininha Smart on a payment plan of 12 installments of R$ 16.58 each. Just a heads-up, the tax rates vary based on how you pay and your monthly revenue. For debit transactions, the tax starts at 1.37%. If you're paying with credit in one go, it's 3.15%, and if you split it into 12 installments, the rate is 12.40%. Oh, and Pix transactions? No tax at all! The good news is, the more you earn monthly, the lower these rates get. For all the nitty-gritty details, you can check out InfinitePay's official website. I'd be happy to help with any other questions you might have!",
+        "source_agent_response": "The Maquininha Smart is available for a payment plan of 12 installments of R$ 16.58. Different tax rates apply depending on the payment method and monthly revenue. For example, for debit transactions, the tax rate starts at 1.37%, while for credit transactions paid in one installment, the rate starts at 3.15%, and for 12 installments, it is 12.40%. Pix transactions have a tax rate of zero. The tax rates decrease as the monthly revenue increases. For more detailed information, you can refer to the official website of InfinitePay.",
+        "agent_workflow": {
+            "agent_name": "Product Knowledge Specialist",
+            "tool_calls": {
+                "search_knowledge_base": [
+                    {
+                        "query": "fees of the Maquininha Smart"
+                    }
+                ]
+            }
+        }
+    }
+]
