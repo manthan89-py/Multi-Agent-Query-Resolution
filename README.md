@@ -129,6 +129,7 @@ The system returns structured responses using Pydantic models:
 Once the server is running, access the interactive API documentation:
 
 - **Swagger UI**: http://localhost:8000/docs
+- ```Make sure to run /load_datababse first to populate the database.```
 
 ## 🎯 Key Features
 
